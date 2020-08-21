@@ -1,3 +1,4 @@
+// Template: https://github.com/maitaken/atcoder-template
 package main
 
 import (
@@ -42,11 +43,11 @@ func readline() string {
 	return string(buf)
 }
 
-func readIntSlice(size int) []int {
-	slice := make([]int, size)
+func readIntSlice() []int {
+	slice := make([]int, 0)
 	lines := strings.Split(readline(), " ")
-	for i, v := range lines {
-		slice[i] = s2i(v)
+	for _, v := range lines {
+		slice = append(slice, s2i(v))
 	}
 	return slice
 }
@@ -190,6 +191,10 @@ func s2i(s string) int {
 		panic("Faild : " + s + " can't convert to int")
 	}
 	return v
+}
+
+func i2s(i int) string {
+	return strconv.Itoa(i)
 }
 
 func gcd(v1, v2 int) int {
