@@ -109,7 +109,7 @@ func modpow(x, y int) int {
 }
 
 func min(values ...int) int {
-	ret := INT_INF
+	ret := values[0]
 	for _, v := range values {
 		if ret > v {
 			ret = v
@@ -119,7 +119,7 @@ func min(values ...int) int {
 }
 
 func max(values ...int) int {
-	ret := -INT_INF
+	ret := values[0]
 	for _, v := range values {
 		if ret < v {
 			ret = v
