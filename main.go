@@ -13,7 +13,6 @@ import (
 const (
 	BUFSIZE = 10000000
 	MOD     = 1000000007
-	INT_INF = math.MaxInt32
 )
 
 var rdr *bufio.Reader
@@ -76,6 +75,10 @@ func b2i(b bool) int {
 		return 1
 	}
 	return 0
+}
+
+func i2b(i int) bool {
+  return i != 0
 }
 
 func abs(v int) int {
@@ -223,38 +226,4 @@ func (t FenwickTree) sum(index int) int {
 		total += t[i]
 	}
 	return total
-}
-
-type Comb struct {
-	length int
-	fac    []int
-	inv    []int
-	finv   []int
-}
-
-func NewComb() *Comb {
-	return &Comb{
-		length: 2,
-		fac:    []int{1, 1},
-		inv:    []int{1, 1},
-		finv:   []int{1, 1},
-	}
-}
-
-func (c Comb) calc(n, k int) int {
-	if n < k {
-		return 0
-	}
-	if n < 0 || k < 0 {
-		return 0
-	}
-
-	if c.length <= n {
-		for i := c.length; i <= n; i++ {
-			c.fac = append(c.fac, mod(c.fac[i-1]*i, MOD))
-			c.inv = append(c.inv, MOD-mod(c.inv[mod(MOD, i)]*(MOD/i), MOD))
-			c.finv = append(c.finv, mod(c.finv[i-1]*c.inv[i], MOD))
-		}
-	}
-	return mod(c.fac[n]*mod(c.finv[k]*c.finv[n-k], MOD), MOD)
 }
